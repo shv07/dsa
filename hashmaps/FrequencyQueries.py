@@ -1,7 +1,5 @@
 #hackerrank-practice problem - 
 #https://www.hackerrank.com/challenges/frequency-queries/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=dictionaries-hashmaps
-
-
 '''
 You are given  queries. Each query is of the form two integers described below:
 - 1 x : Insert x in your data structure.
@@ -29,13 +27,10 @@ Operation   Array   Output
 (3,2)                   1
 
 output final - Return an array with the output: [0,1]
-'''
 
-'''
 Time Complexity: 3*O(1)*q = O(q)
 Space Complexity: O(n1)+O(n2) where n1 is the no. of distinct nos. entered and n2 is the no. of distinct frequencies
 '''
-
 
 def freqQuery(queries):
     d = {}

@@ -1,6 +1,9 @@
 '''
 A program to find the nth catalan no.
 Nth Catalan No. refers to the no. of distinct bst that can be formed with n nodes.
+
+Time Complexity - O(n^2)
+Space Complexity - O(n)
 '''
 
 data = {}

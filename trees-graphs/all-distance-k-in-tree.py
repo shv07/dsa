@@ -45,6 +45,7 @@ target is the value of one of the nodes in the tree.
 #         self.right = None
 from collections import defaultdict
 class Solution:
+    # O(n^2) soln
     def _lcs(self,root, node1, node2):
         if not root:
             return None
@@ -90,3 +91,51 @@ class Solution:
                 dfs(root.right)
         dfs(root_)
         return result
+
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    # O(n) soln
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        if k==0:
+            return [target.val]
+        if not root.left and not root.right:
+            return []
+        
+        parents = {}
+
+        def dfs(node, parent):
+            if not node:
+                return 
+            parents[node] = parent
+            dfs(node.left, node)
+            dfs(node.right, node)
+        
+        # populate the parent nodes 
+        dfs(root, None)
+
+        result = []
+        visited = set()
+        def find_nodes(root, dist):
+            if not root or root in visited:
+                return
+            visited.add(root)
+            if dist==k:
+                result.append(root.val)
+                return
+            for neighbor in (root.left, root.right, parents[root]):
+                find_nodes(neighbor, dist+1)
+        
+        find_nodes(target, 0)
+        return result 
+            
+
+
+        

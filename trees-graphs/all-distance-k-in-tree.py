@@ -138,4 +138,58 @@ class Solution:
             
 
 
+
+################ BFS Solution ###################
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+from collections import deque
+class Solution:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        if k==0:
+            return [target.val]
+        if not root.left and not root.right:
+            return []
+        
+        parents = {}
+
+        def dfs(node, parent):
+            if not node:
+                return 
+            parents[node] = parent
+            dfs(node.left, node)
+            dfs(node.right, node)
+        
+        # populate the parent nodes 
+        dfs(root, None)
+
+        result = []
+        def find_nodes():
+            visited = {target}
+            queue = deque([(target, 0)])
+            while queue:
+                node, dist = queue.popleft()
+                
+                if dist==k:
+                    result.append(node.val)
+                    continue 
+
+                for neighbor in (node.left, node.right, parents[node]):
+                    if neighbor and neighbor not in visited:
+                        queue.append((neighbor, dist+1))
+                        visited.add(neighbor)
+                
+
+        
+        find_nodes()
+        return result 
+            
+
+
+        
+
         
